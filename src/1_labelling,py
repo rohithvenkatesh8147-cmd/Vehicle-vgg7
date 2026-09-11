@@ -1,0 +1,28 @@
+import pathlib, csv
+
+RAW = pathlib.Path("dataset/raw")
+OUTPUT = pathlib.Path("dataset/labels.csv")
+
+rows = []
+label_map = {}
+
+for idx, cls_folder in enumerate(sorted([p for p in RAW.iterdir() if p.is_dir()])):
+    label_map[cls_folder.name] = idx
+    for img in cls_folder.glob("*.*"):
+        if img.suffix.lower() in [".jpg",".jpeg",".png"]:
+            rows.append([str(img), cls_folder.name, idx])
+
+# save csv
+OUTPUT.parent.mkdir(exist_ok=True)
+with open(OUTPUT, "w", newline="") as f:
+    writer = csv.writer(f)
+    writer.writerow(["filepath","label_name","label_id"])
+    writer.writerows(rows)
+
+print(f"Label Map: {label_map}")
+print(f"Total labelled images: {len(rows)}")
+print(f"Saved to {OUTPUT}")
+
+# show sample
+for r in rows[:5]:
+    print(r)
