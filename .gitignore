@@ -1,6 +1,5 @@
 venv/
 __pycache__/
-*.h5
 *.zip
 pyvenv.cfg
 Lib/
