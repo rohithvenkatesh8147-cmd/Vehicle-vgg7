@@ -163,7 +163,8 @@ with left:
     if uploaded:
         img = Image.open(uploaded)
         # show preview
-        st.image(img, use_container_width=True, caption=f"{uploaded.name} • {uploaded.size/1024:.1f}KB")
+        img = Image.open(uploaded).convert("RGB")
+        st.image(img, caption=f"{uploaded.name} - {uploaded.size/1024:.1f}KB")
         # preprocess for model
         arr = np.array(img)
         arr = cv2.resize(arr, (128,128))
