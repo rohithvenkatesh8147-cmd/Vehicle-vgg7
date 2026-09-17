@@ -1,9 +1,5 @@
+streamlit==1.35.0
 tensorflow==2.15.0
-opencv-python
-numpy
-matplotlib
-seaborn
-scikit-learn
-pandas
-streamlit
-pillow
+opencv-python-headless==4.9.0.80   <- headless = works on Cloud + your laptop BOTH!
+pillow==10.3.0
+numpy==1.26.4
